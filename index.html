@@ -550,7 +550,7 @@
             .nav-links {
                 display: none; /* Implement mobile menu if needed, keeping simple for now */
             }
-            
+
             .nav-container {
                 justify-content: center;
                 flex-direction: column;
@@ -576,14 +576,23 @@
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .contact-card {
                 padding: 30px 20px;
             }
-            
+
             .contact-avatar {
                 width: 150px;
                 height: 150px;
+            }
+
+            /* Fix for mobile: background-attachment: fixed doesn't work on iOS */
+            header {
+                background-attachment: scroll;
+            }
+
+            #certificates {
+                background-attachment: scroll;
             }
         }
     </style>
