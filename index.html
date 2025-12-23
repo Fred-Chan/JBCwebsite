@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junior Botball Challenge Global Finals (China)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #00a8e8;
+            --accent-color: #ffc107;
+            --dark-bg: #1a1a2e;
+            --light-bg: #f8f9fa;
+            --text-color: #333;
+            --text-light: #fff;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: var(--text-light);
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,86,179,0.3);
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,168,232,0.4);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-color);
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://cdn.gooo.ai/web-images/b1b0d9d86321121ec1ea5eef3fbcdbd387bffe0ab58d6152771f13e1ee4e534e');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            padding-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        /* Sections General */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* About JBC */
+        #about-jbc {
+            background-color: #fff;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: #eef7ff;
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* 2026 Event */
+        #event-2026 {
+            background-color: var(--light-bg);
+        }
+
+        .event-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .event-poster {
+            max-width: 800px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .event-details {
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .event-info {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .event-cta-text {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        /* About ITCCC */
+        #about-itccc {
+            background: #fff;
+        }
+
+        .itccc-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .itccc-logo {
+            max-width: 300px;
+            margin: 0 auto 30px;
+        }
+
+        .mission-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+            border: 1px solid #e1e8ed;
+        }
+
+        .partnership {
+            margin-top: 30px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--dark-bg);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact .section-title::after {
+            background: var(--secondary-color);
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-avatar {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            border: 4px solid var(--secondary-color);
+            box-shadow: 0 0 20px rgba(0, 168, 232, 0.5);
+        }
+
+        .contact-role {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            color: #fff;
+            margin: 20px 0;
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .contact-email:hover {
+            background: var(--primary-color);
+        }
+
+        /* Certificates Section */
+        #certificates {
+            position: relative;
+            background-image: url('https://cdn.gooo.ai/web-images/70d5f265875ce814851aa6ef9d45356b0dace5bf2f02c9a35dbec9afbebb4a74');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 120px 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        #certificates::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .cert-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cert-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .btn-large {
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        .btn-large:hover {
+            background: #fff;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: #aaa;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-btn {
+            background: #1877f2;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-btn:hover {
+            background: #166fe5;
+            transform: translateY(-2px);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border: 2px solid #fff;
+            border-radius: 5px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 3rem;
+            cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Implement mobile menu if needed, keeping simple for now */
+            }
+            
+            .nav-container {
+                justify-content: center;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                font-size: 0.8rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-card {
+                padding: 30px 20px;
+            }
+            
+            .contact-avatar {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">JBC CHINA</div>
+            <ul class="nav-links">
+                <li><a href="#about-jbc">About JBC</a></li>
+                <li><a href="#event-2026">2026 Event</a></li>
+                <li><a href="#about-itccc">About ITCCC</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header>
+        <div class="container hero-content">
+            <div>
+                <h1>Junior Botball Challenge<br>Global Finals (China)</h1>
+                <p>A spectacular celebration of robotics, innovation, and international cooperation in the heart of Beijing.</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- About JBC Section -->
+        <section id="about-jbc" class="fade-in-section">
+            <div class="container">
+                <h2 class="section-title">About JBC Global Finals (China)</h2>
+                
+                <div class="about-grid">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/HauBEKcDh_Q?start=50" title="JBC Global Finals" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="about-text">
+                        <p>Since its debut in China in 2021, the JBC Global Finals (China) have grown exponentially, establishing the country as a vital hub with worldwide impact. Each August, Beijing welcomes nearly 4,000 competitors from more than a dozen countries and regions for this spectacular celebration of robotics.</p>
+                        <div class="highlight-box">
+                            <p><i class="fas fa-snowflake"></i> The event is proudly supported by its strategic partner, the National Speed Skating Oval ('The Ice Ribbon'), the celebrated centerpiece of the 2022 Winter Olympics.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox('https://cdn.gooo.ai/web-images/b5e909bfdd7dc6638860b990e36def057690e2c0d2849a8d7e6a84abed6c6789')">
+                        <img src="https://cdn.gooo.ai/web-images/b5e909bfdd7dc6638860b990e36def057690e2c0d2849a8d7e6a84abed6c6789" alt="Event Photo 1">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('https://cdn.gooo.ai/web-images/d3193bead082fd55edaf553b5b1ae2a41e2b22746f487c6e6b816dcd3db2c691')">
+                        <img src="https://cdn.gooo.ai/web-images/d3193bead082fd55edaf553b5b1ae2a41e2b22746f487c6e6b816dcd3db2c691" alt="Event Photo 2">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('https://cdn.gooo.ai/web-images/2a4e408f960dbcf77a71aeb396746959f3401861f02d853949623290a6f70dda')">
+                        <img src="https://cdn.gooo.ai/web-images/2a4e408f960dbcf77a71aeb396746959f3401861f02d853949623290a6f70dda" alt="Event Photo 3">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2026 Event Section -->
+        <section id="event-2026" class="fade-in-section">
+            <div class="container">
+                <h2 class="section-title">2026 Event Details</h2>
+                <div class="event-container">
+                    <img src="https://cdn.gooo.ai/web-images/011a0966fc2638a64cd4046031322465298bfe2a253f522d885221fea1ba73e7" alt="2026 Event Poster" class="event-poster">
+                    
+                    <div class="event-details">
+                        <div class="event-info">
+                            <i class="far fa-calendar-alt"></i> Aug 25th - Aug 26th 2026
+                            <span style="margin: 0 10px;">|</span>
+                            <i class="fas fa-map-marker-alt"></i> Beijing, China, National Skating Oval
+                        </div>
+                        <p class="event-cta-text">For more detail arrangement and rules, please visit:</p>
+                        <a href="https://www.yuque.com/jbc/foreign_teams" target="_blank" class="btn">Event Information</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About ITCCC Section -->
+        <section id="about-itccc" class="fade-in-section">
+            <div class="container">
+                <h2 class="section-title">About ITCCC</h2>
+                <div class="itccc-content">
+                    <img src="https://cdn.gooo.ai/web-images/4a8a7039a7538fb62d77b14bb222b5916b7bb82394a065e9b0575608ca981c09" alt="ITCCC Logo" class="itccc-logo">
+                    
+                    <div class="mission-card">
+                        <p style="font-size: 1.1rem; margin-bottom: 20px;">Global Junior Botball Challenge – Asia is a project in Beijing that is organized by ITCCC (Inspiring Teenagers to Create, Cooperate and Contribute).</p>
+                        <p class="partnership">In partnership with KIPR (Kiss Institute for Practical Robotics)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="fade-in-section">
+            <div class="container">
+                <h2 class="section-title" style="color: white;">Contact Us</h2>
+                <div class="contact-card">
+                    <img src="https://cdn.gooo.ai/web-images/c0621b674e2d48818920ae96306d4e3337d7835cd55873186c45e54ebd890c11" alt="Fred Chan" class="contact-avatar">
+                    <h3>Fred Chan</h3>
+                    <p class="contact-role">Botball & Junior Botball Global Ambassador</p>
+                    
+                    <a href="mailto:botballasia@kipr.org" class="contact-email">
+                        <i class="fas fa-envelope"></i> botballasia@kipr.org
+                    </a>
+                    
+                    <p style="margin-top: 20px; color: #ddd;">Fred is available to assist with regional event details, team participation, and partnership opportunities across Asia.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="fade-in-section">
+            <div class="container cert-content">
+                <h2 class="cert-title">JBC GLOBAL FINALS RESULTS</h2>
+                <a href="https://shuju.itccc.org.cn/f/RPWkG8" target="_blank" class="btn btn-large">CLICK HERE TO DOWNLOAD</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <a href="https://www.facebook.com/profile.php?id=61559434983781" target="_blank" class="footer-btn">
+                <i class="fab fa-facebook-f"></i> Follow Us
+            </a>
+            <p>&copy; 2023 Junior Botball Challenge Global Finals (China). All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged Image">
+    </div>
+
+    <script>
+        // Lightbox Functionality
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        }
+
+        // Intersection Observer for Fade-in Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const sections = document.querySelectorAll('.fade-in-section');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
